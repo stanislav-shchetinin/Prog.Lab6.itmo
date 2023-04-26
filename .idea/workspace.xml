@@ -4,7 +4,54 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="165be659-3698-469e-afce-de9a86e190bd" name="Changes" comment="" />
+    <list default="true" id="165be659-3698-469e-afce-de9a86e190bd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/files/file" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/base/Coordinates.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/base/Vehicle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/base/VehicleType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/AddElement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/AddIfMax.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/AddIfMin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/Clear.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/CountByCapacity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/ExecuteScript.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/Exit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/Help.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/Info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/PrintAscending.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/PrintUniqueEnginePower.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/RemoveById.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/RemoveFirst.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/Save.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/Show.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/commands/UpdateId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/console/Console.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/exceptions/ReadTypeException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/exceptions/ReadValueException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/service/CollectionClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/service/FileRead.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/service/InitGlobalCollections.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/service/NoInputTypes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/service/Pair.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/service/Parse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/service/Validate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/service/command/Command.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/service/command/ElementArgument.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/service/command/NoArgument.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/service/command/OneArgument.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/test/java/step/MyStepdefs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/test/java/tests/RunnerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/test/resources/features/feat1.feature" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +59,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2OvrJ26lyk2JESWV0KnVBthHMgh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -22,9 +72,33 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "corretto-17",
+    "last_opened_file_path": "C:/ЛабораторныеРаботы/2сем/Программирование/ЛР6/Lab6/Client"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\ЛабораторныеРаботы\2сем\Программирование\ЛР6\Lab6\Client" />
+      <recent name="C:\ЛабораторныеРаботы\2сем\Программирование\ЛР6\Lab6\Client\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\ЛабораторныеРаботы\2сем\Программирование\ЛР6\Lab6\Client\files" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ClientMain" type="Application" factoryName="Application">
+      <envs>
+        <env name="NAME_FILE" value="Client/files/file" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Client" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -35,5 +109,16 @@
       <updated>1682451822568</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
