@@ -13,9 +13,9 @@ public class Interaction {
         Scanner in = new Scanner(System.in);
         while (true){
             try {
-                System.out.println("Подключение к " + serverName + " на порт " + port);
+                System.out.println(String.format("Подключение к %s на порт %d", serverName, port));
                 Socket client = new Socket(serverName, port);
-                System.out.println("Подключается к " + client.getRemoteSocketAddress());
+                System.out.println(String.format("Подключение к %s", client.getRemoteSocketAddress()));
                 return client;
             } catch (IOException e) {
                 log.warning("Ошибка подключения к серверу");

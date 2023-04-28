@@ -6,6 +6,7 @@ import commands.Save;
 import console.Console;
 
 import lombok.extern.java.Log;
+import server.Interaction;
 import service.CollectionClass;
 import service.FileRead;
 import service.command.Command;
@@ -28,30 +29,12 @@ public class Main {
     /**
      * Метод main - стартовая точка проекта
      */
+     public static final String serverName = "localhost";
+    public static final int port = 4782;
     public static void main(String[] args) {
 
-        String serverName = "localhost";
-        int port = 4782;
-
         CollectionClass collectionClass = new CollectionClass(); //Менеджер коллекции
-
-        ServerSocket serverSocket = null;
-
-        try {
-            serverSocket = new ServerSocket(port);
-        } catch (IOException ex) {
-            System.out.println("Can't setup server on this port number. ");
-        }
-
-        Socket socket = null;
-        InputStream in = null;
-        OutputStream out = null;
-
-        try {
-            socket = serverSocket.accept();
-        } catch (IOException ex) {
-            System.out.println("Can't accept client connection. ");
-        }
+        Interaction.Connection(serverName, port);
 
         try {
             in = socket.getInputStream();
