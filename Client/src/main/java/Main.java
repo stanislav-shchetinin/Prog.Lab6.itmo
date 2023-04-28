@@ -21,21 +21,7 @@ public class Main {
 
         File file = getFile(new Scanner(System.in)); //NAME_FILE
         Socket client = Interaction.Connection(serverName, port);
-        try {
-            byte[] bytes = new byte[16 * 1024];
-            InputStream in = new FileInputStream(file);
-            OutputStream out = client.getOutputStream();
-            int count;
-            while ((count = in.read(bytes)) > 0) {
-                out.write(bytes, 0, count);
-            }
-            out.close();
-            in.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        Interaction.fileToServer(file, client);
 
     }
 }   

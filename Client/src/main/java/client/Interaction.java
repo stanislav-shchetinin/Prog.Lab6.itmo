@@ -2,7 +2,7 @@ package client;
 
 import lombok.extern.java.Log;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -23,8 +23,23 @@ public class Interaction {
                 port = in.nextInt();
             }
         }
+    }
 
+    public static void fileToServer(File file, Socket client){
+        try {
+            byte[] bytes = new byte[16 * 1024];
+            InputStream in = new FileInputStream(file);
+            OutputStream out = client.getOutputStream();
+            int count;
+            while ((count = in.read(bytes)) > 0) {
+                out.write(bytes, 0, count);
+            }
+            out.close();
+            in.close();
 
+        } catch (IOException e) {
+            log.warning("Проблема с записью файла на сервере");
+        }
     }
 
 }
