@@ -15,7 +15,6 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.*;
-import java.util.concurrent.ConcurrentMap;
 
 import static service.InitGlobalCollections.setNoInputTypes;
 import static service.Parse.formatInput;
@@ -58,14 +57,13 @@ public class Console {
 
         }
     }
-
     /**
      * Метод для ввода команд из консоли
      * <p>
      * <b>file</b> нужен для получения команды Save в mapCommand
      * */
-    public static Command inputCommands() {
-        HashMap<String, Command> mapCommand = InitGlobalCollections.mapCommand();
+    public static void inputCommands(CollectionClass collectionClass, File file) {
+        HashMap<String, Command> mapCommand = InitGlobalCollections.mapCommand(collectionClass, file);
         Scanner in = new Scanner(System.in);
         while (true){
             try {
@@ -82,19 +80,15 @@ public class Console {
                 if (arrayString.length != 1){
                     command.setParametr(arrayString[1]);
                 }
-                if (command instanceof ElementArgument) {
-                    Vehicle vehicle = inputVehicle();
+                if (command instanceof ElementArgument){
+                    Vehicle vehicle = inputVehicle(collectionClass);
                     command.setElement(vehicle);
                 }
-
-                /*
-                * команда отправляется на сервер
-                * на сервере нужно всем командам установить коллекцию
-                * */
-                return command;
+                command.execute();
+                command.clearFields();
             } catch (NoSuchElementException e){
                 log.warning("Не введены значения");
-                return null;
+                break;
             }
         }
 
@@ -102,15 +96,15 @@ public class Console {
     /**
      * Вспомогательный метод для ввода Vehicle: выдает сообщение пользователю с просьбой о вводе данных и устанавливает значения в поле
      * */
-    private static void consoleVehicle (Scanner in, Vehicle vehicle, Field field) throws ReadValueException, IllegalAccessException {
+    private static void consoleVehicle (CollectionClass collectionClass, Scanner in, Vehicle vehicle, Field field) throws ReadValueException, IllegalAccessException {
         System.out.println(String.format("\n%sВведите %s: ", formatInput(field.getType()), field.getName()));
         String value = in.nextLine();
-        field.set(vehicle, thisType(value, field));
+        field.set(vehicle, thisType(value, field, collectionClass));
     }
      /**
       * Ввод Vehicle из консоли
       * */
-    public static Vehicle inputVehicle() {
+    public static Vehicle inputVehicle(CollectionClass collectionClass) {
         Scanner in = new Scanner(System.in);
         Vehicle vehicle = new Vehicle();
         HashSet<String> setNoInputTypes = setNoInputTypes(NoInputTypes.values());
@@ -123,7 +117,7 @@ public class Console {
             while (!isCorrectValue){
                 try {
                     isCorrectValue = true;
-                    consoleVehicle(in, vehicle, field);
+                    consoleVehicle(collectionClass, in, vehicle, field);
                 } catch (IllegalArgumentException e) {
                     isCorrectValue = false;
                     log.warning(String.format("Неверный тип %s", field.getName()));

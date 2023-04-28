@@ -1,12 +1,9 @@
 package base;
-
-import java.io.Serializable;
-
 /**
 * Класс для хранения координат (x, y)<p>
  * Реализует Comparable, чтобы была возможность сравнить пару координат
  */
-public class Coordinates implements Comparable<Coordinates>, Serializable {
+public class Coordinates implements Comparable<Coordinates>{
     private Float x; //Поле не может быть null
     private float y; //Значение поля должно быть больше -762
 

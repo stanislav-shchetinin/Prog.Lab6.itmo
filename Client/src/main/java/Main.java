@@ -1,22 +1,10 @@
-import base.Coordinates;
-import base.Vehicle;
-import base.VehicleType;
-import commands.ExecuteScript;
-import commands.Save;
-import console.Console;
-
-import lombok.extern.java.Log;
-import service.CollectionClass;
-import service.FileRead;
-import service.command.Command;
+import client.Interaction;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
 import static console.Console.*;
-import static service.FileRead.fromFileVehicle;
-import static service.Parse.parseFromCSVtoString;
 
 /**
  * Это главный класс с методом main
@@ -26,20 +14,28 @@ public class Main {
     /**
      * Метод main - стартовая точка проекта
      */
+
+    public static final String serverName = "localhost";
+    public static final int port = 4782;
     public static void main(String[] args) {
 
-            File file = getFile(new Scanner(System.in)); //NAME_FILE
-            /*try {
-                Socket clientSocket = new Socket ("localhost",50001);
-                InputStream is = clientSocket.getInputStream();
-                BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                String receivedData = br.readLine();
-                System.out.println("Received Data: "+receivedData);
+        File file = getFile(new Scanner(System.in)); //NAME_FILE
+        Socket client = Interaction.Connection(serverName, port);
+        try {
+            byte[] bytes = new byte[16 * 1024];
+            InputStream in = new FileInputStream(file);
+            OutputStream out = client.getOutputStream();
+            int count;
+            while ((count = in.read(bytes)) > 0) {
+                out.write(bytes, 0, count);
             }
-            catch (Exception e) {
-                e.printStackTrace();
-            }*/
-            Console.inputCommands(); //Ввод команд из консоли
+            out.close();
+            in.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }   

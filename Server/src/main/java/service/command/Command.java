@@ -3,7 +3,6 @@ package service.command;
 import base.Vehicle;
 import service.CollectionClass;
 
-import java.io.OutputStream;
 import java.io.Serializable;
 
 /**
