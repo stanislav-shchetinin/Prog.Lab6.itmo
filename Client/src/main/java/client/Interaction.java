@@ -36,10 +36,20 @@ public class Interaction {
         out.flush();
     }
 
+    private static Command setCommand() throws ReadValueException{
+        try {
+            return inputCommand();
+        } catch (IllegalArgumentException e) {
+            log.warning("Неверный параметр для команды");
+            return null;
+        }
+
+    }
+
     public static void commandsToServer(ObjectOutputStream out, ObjectInputStream in) throws IOException, ClassNotFoundException {
         try {
             while (true){
-                Command command = inputCommand();
+                Command command = setCommand();
                 if (command instanceof Exit){
                     out.writeObject(new Save(new File("Server/files/file")));
                     out.flush();

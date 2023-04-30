@@ -64,7 +64,7 @@ public class Console {
      * <p>
      * <b>file</b> нужен для получения команды Save в mapCommand
      * */
-    public static Command inputCommand() throws ReadValueException{
+    public static Command inputCommand() throws ReadValueException, IllegalArgumentException{
         HashMap<String, Command> mapCommand = InitGlobalCollections.mapCommand();
         Scanner in = new Scanner(System.in);
         try {

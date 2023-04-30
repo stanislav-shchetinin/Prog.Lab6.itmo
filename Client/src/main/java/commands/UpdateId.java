@@ -8,6 +8,7 @@ import service.command.Command;
 import service.command.ElementArgument;
 import service.command.OneArgument;
 
+import java.io.IOException;
 import java.util.UUID;
 
 /**
@@ -37,11 +38,7 @@ public class UpdateId implements Command, ElementArgument, OneArgument {
 
     @Override
     public void setParametr(String uuidString){
-        try {
-            this.pair.setR(UUID.fromString(uuidString));
-        } catch (IllegalArgumentException e){
-            log.warning("Неверный тип id");
-        }
+        this.pair.setR(UUID.fromString(uuidString));
     }
 
     @Override
@@ -60,9 +57,9 @@ public class UpdateId implements Command, ElementArgument, OneArgument {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws IOException {
         if (pair.getR() == null || pair.getL() == null){
-            log.warning("Недостаточно параметров, чтобы выполнить комманду");
+            throw new IOException("Недостаточно значений для выполнения команды");
         } else {
             collectionClass.updateById(pair);
         }

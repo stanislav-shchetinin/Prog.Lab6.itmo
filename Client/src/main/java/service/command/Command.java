@@ -13,7 +13,7 @@ import java.io.Serializable;
  * */
 public interface Command extends Serializable {
 
-    default void execute(){}
+    default void execute() throws IOException {}
     default void execute(ObjectOutputStream out) throws IOException{
         execute();
         out.writeObject("");

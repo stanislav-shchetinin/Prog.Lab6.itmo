@@ -47,7 +47,7 @@ public class Main {
             fromFileVehicle(collectionClass, new Scanner(parseFromCSVtoString(file))); //Считывание файла и запись его в collectionClass
             Interaction.executeCommands(collectionClass, in, out);
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException | IllegalArgumentException e) {
             log.warning(e.getMessage());
         }
 

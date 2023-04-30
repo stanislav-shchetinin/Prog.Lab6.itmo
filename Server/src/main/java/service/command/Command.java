@@ -1,6 +1,7 @@
 package service.command;
 
 import base.Vehicle;
+import exceptions.ReadValueException;
 import service.CollectionClass;
 
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.io.Serializable;
  * Интерфейс Command для паттерна Command
  * */
 public interface Command extends Serializable {
-    default void execute(){}
+    default void execute() throws IOException {}
     default void execute(ObjectOutputStream out) throws IOException {
         execute();
         out.writeObject("");
