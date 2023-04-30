@@ -64,7 +64,7 @@ public class Console {
      * <p>
      * <b>file</b> нужен для получения команды Save в mapCommand
      * */
-    public static Command inputCommand() {
+    public static Command inputCommand() throws ReadValueException{
         HashMap<String, Command> mapCommand = InitGlobalCollections.mapCommand();
         Scanner in = new Scanner(System.in);
         try {
@@ -92,8 +92,7 @@ public class Console {
             * */
             return command;
         } catch (NoSuchElementException e){
-            log.warning("Не введены значения");
-            return null;
+            throw new ReadValueException("Не введены значения");
         }
 
     }

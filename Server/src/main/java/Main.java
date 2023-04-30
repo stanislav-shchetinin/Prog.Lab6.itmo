@@ -39,9 +39,11 @@ public class Main {
 
         try (OutputStream outputStream = server.getOutputStream();
              InputStream inputStream = server.getInputStream();
-             ObjectInputStream in = new ObjectInputStream(inputStream)){
+             ObjectInputStream in = new ObjectInputStream(inputStream);
+             ObjectOutputStream out = new ObjectOutputStream(outputStream)){
 
             File file = (File) in.readObject();
+
             fromFileVehicle(collectionClass, new Scanner(parseFromCSVtoString(file))); //Считывание файла и запись его в collectionClass
             Interaction.executeCommands(collectionClass, in);
 

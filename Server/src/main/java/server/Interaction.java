@@ -42,10 +42,14 @@ public class Interaction {
 
     public static void executeCommands(CollectionClass collectionClass, ObjectInputStream in) throws IOException, ClassNotFoundException {
         while (true){
-            Command command = (Command) in.readObject();
-            command.setCollection(collectionClass);
-            command.execute();
-            command.clearFields();
+            try {
+                Command command = (Command) in.readObject();
+                command.setCollection(collectionClass);
+                command.execute();
+                command.clearFields();
+            } catch (NullPointerException e){
+                log.warning(e.getMessage());
+            }
         }
     }
 

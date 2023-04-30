@@ -88,7 +88,7 @@ public class Console {
                 command.clearFields();
             } catch (NoSuchElementException e){
                 log.warning("Не введены значения");
-                break;
+                System.exit(1);
             }
         }
 

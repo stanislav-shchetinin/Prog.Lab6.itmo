@@ -1,5 +1,6 @@
 package client;
 
+import exceptions.ReadValueException;
 import lombok.extern.java.Log;
 import service.command.Command;
 
@@ -33,13 +34,25 @@ public class Interaction {
         out.flush();
     }
 
-    public static void commandsToServer(ObjectOutputStream out) throws IOException {
-        while (true){
-            Command command = inputCommand();
-            out.writeObject(command);
-            out.flush();
-            command.clearFields();
+    public static void commandsToServer(ObjectOutputStream out, ObjectInputStream in) throws IOException, ClassNotFoundException {
+        try {
+            while (true){
+                Command command = inputCommand();
+                if (command == null){
+                    continue;
+                }
+                out.writeObject(command);
+                out.flush();
+                //command.clearFields();
+
+                /*String answer = (String) in.readObject();
+                System.out.println(answer);*/
+
+            }
+        } catch (ReadValueException e){
+            log.warning(e.getMessage());
         }
+
     }
 
 }

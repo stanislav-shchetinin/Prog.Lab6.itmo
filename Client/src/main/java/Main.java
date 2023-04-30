@@ -28,12 +28,14 @@ public class Main {
 
         try (OutputStream outputStream = client.getOutputStream();
              InputStream inputStream = client.getInputStream();
-             ObjectOutputStream out = new ObjectOutputStream(outputStream)) {
+             ObjectOutputStream out = new ObjectOutputStream(outputStream);
+             ObjectInputStream in = new ObjectInputStream(inputStream)) {
 
             Interaction.fileToServer(out, file);
-            Interaction.commandsToServer(out);
+            Interaction.commandsToServer(out, in);
 
-        } catch (IOException e) {
+
+        } catch (IOException | ClassNotFoundException e) {
             log.warning(e.getMessage());
         }
 
