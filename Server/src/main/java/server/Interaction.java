@@ -24,9 +24,8 @@ public class Interaction {
             }
         }
     }
-    public static File fileFromClient(String pathFile, Socket server){
+    public static File fileFromClient(String pathFile, Socket server, InputStream in){
         try {
-            InputStream in = server.getInputStream();
             OutputStream out = new FileOutputStream(pathFile);
             byte[] bytes = new byte[16*1024];
             try {

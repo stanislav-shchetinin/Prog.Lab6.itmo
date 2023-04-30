@@ -1,3 +1,4 @@
+import base.Vehicle;
 import client.Interaction;
 
 import java.io.*;
@@ -19,9 +20,26 @@ public class Main {
     public static final int port = 4782;
     public static void main(String[] args) {
 
-        File file = getFile(new Scanner(System.in)); //NAME_FILE
         Socket client = Interaction.Connection(serverName, port);
-        Interaction.fileToServer(file, client);
+
+        File file = getFile(new Scanner(System.in)); //NAME_FILE
+
+        try (OutputStream outputStream = client.getOutputStream();
+        InputStream inputStream = client.getInputStream()) {
+
+            //Interaction.fileToServer(file, client, outputStream);
+            Thread.sleep(1000);
+            ObjectOutputStream out = new ObjectOutputStream(outputStream);
+            Vehicle vehicle = inputVehicle();
+            out.writeObject(vehicle);
+            out.flush();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 }   

@@ -35,10 +35,29 @@ public class Main {
 
         CollectionClass collectionClass = new CollectionClass(); //Менеджер коллекции
         Socket server = Interaction.Connection(serverName, port);
-        File file = Interaction.fileFromClient("Server/files/file", server);
-        Interaction.outputFile(file);
 
-        fromFileVehicle(collectionClass, new Scanner(parseFromCSVtoString(file))); //Считывание файла и запись его в collectionClass
+        try (OutputStream outputStream = server.getOutputStream();
+        InputStream inputStream = server.getInputStream()){
+
+            //File file = Interaction.fileFromClient("Server/files/file", server, inputStream);
+            //Interaction.outputFile(file);
+
+            Thread.sleep(1000);
+
+            ObjectInputStream in = new ObjectInputStream(inputStream);
+            Vehicle vehicle = (Vehicle) in.readObject();
+
+            System.out.println(vehicle);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        //fromFileVehicle(collectionClass, new Scanner(parseFromCSVtoString(file))); //Считывание файла и запись его в collectionClass
 
     }
 }   

@@ -25,18 +25,16 @@ public class Interaction {
         }
     }
 
-    public static void fileToServer(File file, Socket client){
+    public static void fileToServer(File file, Socket client, OutputStream out){
         try {
             byte[] bytes = new byte[16 * 1024];
             InputStream in = new FileInputStream(file);
-            OutputStream out = client.getOutputStream();
             int count;
             while ((count = in.read(bytes)) > 0) {
                 out.write(bytes, 0, count);
             }
-            out.close();
+            out.flush();
             in.close();
-
         } catch (IOException e) {
             log.warning("Проблема с записью файла на сервере");
         }

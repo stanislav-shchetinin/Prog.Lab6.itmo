@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="165be659-3698-469e-afce-de9a86e190bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/client/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/client/Interaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/files/file" beforeDir="false" afterPath="$PROJECT_DIR$/Server/files/file" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/server/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/server/Interaction.java" afterDir="false" />
     </list>
@@ -23,6 +26,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -33,15 +37,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "jdk.selected.JAVA_MODULE": "corretto-17",
-    "last_opened_file_path": "C:/ЛабораторныеРаботы/2сем/Программирование/ЛР6/Lab6"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/ЛабораторныеРаботы/2сем/Программирование/ЛР6/Lab6&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\ЛабораторныеРаботы\2сем\Программирование\ЛР6\Lab6\Server\src\main\java\service" />
