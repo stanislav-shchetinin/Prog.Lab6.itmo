@@ -1,5 +1,7 @@
 import base.Vehicle;
 import client.Interaction;
+import lombok.extern.java.Log;
+import service.command.Command;
 
 import java.io.*;
 import java.net.Socket;
@@ -10,6 +12,7 @@ import static console.Console.*;
 /**
  * Это главный класс с методом main
 */
+@Log
 public class Main {
 
     /**
@@ -21,25 +24,18 @@ public class Main {
     public static void main(String[] args) {
 
         Socket client = Interaction.Connection(serverName, port);
-
         File file = getFile(new Scanner(System.in)); //NAME_FILE
 
         try (OutputStream outputStream = client.getOutputStream();
-        InputStream inputStream = client.getInputStream()) {
+             InputStream inputStream = client.getInputStream();
+             ObjectOutputStream out = new ObjectOutputStream(outputStream)) {
 
-            //Interaction.fileToServer(file, client, outputStream);
-            Thread.sleep(1000);
-            ObjectOutputStream out = new ObjectOutputStream(outputStream);
-            Vehicle vehicle = inputVehicle();
-            out.writeObject(vehicle);
-            out.flush();
+            Interaction.fileToServer(out, file);
+            Interaction.commandsToServer(out);
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            log.warning(e.getMessage());
         }
-
 
     }
 }   

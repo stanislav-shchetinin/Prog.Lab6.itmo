@@ -1,8 +1,11 @@
 package service;
+
+import java.io.Serializable;
+
 /**
  * Класс для пары значений
  * */
-public class Pair <L, R>{
+public class Pair <L, R> implements Serializable {
     private L l;
     private R r;
 

@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/client/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/client/Interaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/files/file" beforeDir="false" afterPath="$PROJECT_DIR$/Server/files/file" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/console/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/console/Console.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/server/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/server/Interaction.java" afterDir="false" />
     </list>

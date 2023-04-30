@@ -24,6 +24,7 @@ import static service.Parse.parseFromCSVtoString;
 /**
  * Это главный класс с методом main
 */
+@Log
 public class Main {
 
     /**
@@ -37,27 +38,16 @@ public class Main {
         Socket server = Interaction.Connection(serverName, port);
 
         try (OutputStream outputStream = server.getOutputStream();
-        InputStream inputStream = server.getInputStream()){
+             InputStream inputStream = server.getInputStream();
+             ObjectInputStream in = new ObjectInputStream(inputStream)){
 
-            //File file = Interaction.fileFromClient("Server/files/file", server, inputStream);
-            //Interaction.outputFile(file);
+            File file = (File) in.readObject();
+            fromFileVehicle(collectionClass, new Scanner(parseFromCSVtoString(file))); //Считывание файла и запись его в collectionClass
+            Interaction.executeCommands(collectionClass, in);
 
-            Thread.sleep(1000);
-
-            ObjectInputStream in = new ObjectInputStream(inputStream);
-            Vehicle vehicle = (Vehicle) in.readObject();
-
-            System.out.println(vehicle);
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | ClassNotFoundException e) {
+            log.warning(e.getMessage());
         }
-
-        //fromFileVehicle(collectionClass, new Scanner(parseFromCSVtoString(file))); //Считывание файла и запись его в collectionClass
 
     }
 }   

@@ -1,10 +1,13 @@
 package client;
 
 import lombok.extern.java.Log;
+import service.command.Command;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
+
+import static console.Console.inputCommand;
 
 @Log
 public class Interaction {
@@ -25,18 +28,17 @@ public class Interaction {
         }
     }
 
-    public static void fileToServer(File file, Socket client, OutputStream out){
-        try {
-            byte[] bytes = new byte[16 * 1024];
-            InputStream in = new FileInputStream(file);
-            int count;
-            while ((count = in.read(bytes)) > 0) {
-                out.write(bytes, 0, count);
-            }
+    public static void fileToServer(ObjectOutputStream out, File file) throws IOException {
+        out.writeObject(file);
+        out.flush();
+    }
+
+    public static void commandsToServer(ObjectOutputStream out) throws IOException {
+        while (true){
+            Command command = inputCommand();
+            out.writeObject(command);
             out.flush();
-            in.close();
-        } catch (IOException e) {
-            log.warning("Проблема с записью файла на сервере");
+            command.clearFields();
         }
     }
 

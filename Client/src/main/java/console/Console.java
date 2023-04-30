@@ -64,41 +64,40 @@ public class Console {
      * <p>
      * <b>file</b> нужен для получения команды Save в mapCommand
      * */
-    public static Command inputCommands() {
+    public static Command inputCommand() {
         HashMap<String, Command> mapCommand = InitGlobalCollections.mapCommand();
         Scanner in = new Scanner(System.in);
-        while (true){
-            try {
-                String[] arrayString = in.nextLine().trim().split(" "); //разрез строки по пробелу и удаление крайних пробелов
-                if (arrayString.length == 0){
-                    continue;
-                }
-                String nameCommand = arrayString[0];
-                Command command = mapCommand.get(nameCommand);
-                if (command == null){
-                    log.warning("Не существует команды с указанным названием");
-                    continue;
-                }
-                if (arrayString.length != 1){
-                    command.setParametr(arrayString[1]);
-                }
-                if (command instanceof ElementArgument) {
-                    Vehicle vehicle = inputVehicle();
-                    command.setElement(vehicle);
-                }
-
-                /*
-                * команда отправляется на сервер
-                * на сервере нужно всем командам установить коллекцию
-                * */
-                return command;
-            } catch (NoSuchElementException e){
-                log.warning("Не введены значения");
+        try {
+            String[] arrayString = in.nextLine().trim().split(" "); //разрез строки по пробелу и удаление крайних пробелов
+            if (arrayString.length == 0){
                 return null;
             }
+            String nameCommand = arrayString[0];
+            Command command = mapCommand.get(nameCommand);
+            if (command == null){
+                log.warning("Не существует команды с указанным названием");
+                return null;
+            }
+            if (arrayString.length != 1){
+                command.setParametr(arrayString[1]);
+            }
+            if (command instanceof ElementArgument) {
+                Vehicle vehicle = inputVehicle();
+                command.setElement(vehicle);
+            }
+
+            /*
+            * команда отправляется на сервер
+            * на сервере нужно всем командам установить коллекцию
+            * */
+            return command;
+        } catch (NoSuchElementException e){
+            log.warning("Не введены значения");
+            return null;
         }
 
     }
+
     /**
      * Вспомогательный метод для ввода Vehicle: выдает сообщение пользователю с просьбой о вводе данных и устанавливает значения в поле
      * */

@@ -1,6 +1,8 @@
 package server;
 
 import lombok.extern.java.Log;
+import service.CollectionClass;
+import service.command.Command;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -24,26 +26,6 @@ public class Interaction {
             }
         }
     }
-    public static File fileFromClient(String pathFile, Socket server, InputStream in){
-        try {
-            OutputStream out = new FileOutputStream(pathFile);
-            byte[] bytes = new byte[16*1024];
-            try {
-
-                int count;
-                while ((count = in.read(bytes)) > 0) {
-                    out.write(bytes, 0, count);
-                }
-            } catch (IOException e){
-                e.printStackTrace();
-            }
-            File file = new File(pathFile);
-            return file;
-        } catch (IOException e){
-            log.warning("Ошибка при передаче файла");
-            return null;
-        }
-    }
 
     public static void outputFile(File file){
         try {
@@ -55,6 +37,15 @@ public class Interaction {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static void executeCommands(CollectionClass collectionClass, ObjectInputStream in) throws IOException, ClassNotFoundException {
+        while (true){
+            Command command = (Command) in.readObject();
+            command.setCollection(collectionClass);
+            command.execute();
+            command.clearFields();
         }
     }
 
