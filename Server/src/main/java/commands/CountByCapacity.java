@@ -4,6 +4,9 @@ import lombok.extern.java.Log;
 import service.CollectionClass;
 import service.command.Command;
 import service.command.OneArgument;
+
+import java.io.ObjectOutputStream;
+
 /**
  * Класс команды: count_by_capacity capacity<p>
  * Реализует класс Command, чтобы можно было вызывать выполнение команды<p>
@@ -42,11 +45,11 @@ public class CountByCapacity implements Command, OneArgument {
     }
 
     @Override
-    public void execute() {
+    public void execute(ObjectOutputStream out) {
         if (capacity == null){
             log.warning("Недостаточно параметров, чтобы выполнить комманду");
         } else {
-            collectionClass.countByCapacity(capacity);
+            collectionClass.countByCapacity(capacity, out);
         }
     }
     /**

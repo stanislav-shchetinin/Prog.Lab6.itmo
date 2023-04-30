@@ -1,13 +1,19 @@
 package commands;
 
+import lombok.extern.java.Log;
 import service.CollectionClass;
 import service.command.Command;
 import service.command.NoArgument;
+
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 /**
  * Класс команды информации о коллекции: info<p>
  * Реализует класс Command, чтобы можно было вызывать выполнение команды<p>
  * Реализует маркировочный интерфейс NoArgument, чтобы можно было проверить какие аргументы принимает команда (без аргументов)
  * */
+@Log
 public class Info implements Command, NoArgument {
 
     private CollectionClass collectionClass;
@@ -34,12 +40,18 @@ public class Info implements Command, NoArgument {
      * В менеджере коллекции хранится вся информация, которая нужна
      * */
     @Override
-    public void execute() {
-        System.out.println(String.format("Тип: %s\nДата инициализации: %s\nКоличество элементов: %d",
-                collectionClass.getCollection().getClass().getSimpleName(),
-                collectionClass.getTime(),
-                collectionClass.getCollection().size())
-        );
+    public void execute(ObjectOutputStream out) {
+        try {
+            out.writeObject(String.format("Тип: %s\nДата инициализации: %s\nКоличество элементов: %d",
+                    collectionClass.getCollection().getClass().getSimpleName(),
+                    collectionClass.getTime(),
+                    collectionClass.getCollection().size())
+            );
+            out.flush();
+        } catch (IOException e) {
+            log.warning(e.getMessage());
+        }
+
     }
     @Override
     public void setCollection(CollectionClass collectionClass) {

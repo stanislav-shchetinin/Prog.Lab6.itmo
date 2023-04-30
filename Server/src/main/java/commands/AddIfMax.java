@@ -4,6 +4,9 @@ import base.Vehicle;
 import service.CollectionClass;
 import service.command.Command;
 import service.command.ElementArgument;
+
+import java.io.ObjectOutputStream;
+
 /**
  * Класс команды добавления элемента: add_if_max {element}<p>
  * Реализует класс Command, чтобы можно было вызывать выполнение команды<p>

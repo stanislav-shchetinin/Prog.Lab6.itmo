@@ -3,6 +3,9 @@ package commands;
 import service.CollectionClass;
 import service.command.Command;
 import service.command.NoArgument;
+
+import java.io.ObjectOutputStream;
+
 /**
  * Класс команды: print_ascending<p>
  * Реализует класс Command, чтобы можно было вызывать выполнение команды<p>
@@ -30,8 +33,8 @@ public class PrintAscending implements Command, NoArgument {
         return "print_ascending";
     }
     @Override
-    public void execute() {
-        collectionClass.printAscending();
+    public void execute(ObjectOutputStream out) {
+        collectionClass.printAscending(out);
     }
     @Override
     public void setCollection(CollectionClass collectionClass) {

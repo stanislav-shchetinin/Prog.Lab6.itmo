@@ -3,6 +3,9 @@ package commands;
 import service.CollectionClass;
 import service.command.Command;
 import service.command.NoArgument;
+
+import java.io.ObjectOutputStream;
+
 /**
  * Класс команды: print_unique_engine_power<p>
  * Реализует класс Command, чтобы можно было вызывать выполнение команды<p>
@@ -28,8 +31,8 @@ public class PrintUniqueEnginePower implements Command, NoArgument {
         return "print_unique_engine_power";
     }
     @Override
-    public void execute() {
-        collectionClass.printUniqueEnginePower();
+    public void execute(ObjectOutputStream out) {
+        collectionClass.printUniqueEnginePower(out);
     }
     @Override
     public void setCollection(CollectionClass collectionClass) {

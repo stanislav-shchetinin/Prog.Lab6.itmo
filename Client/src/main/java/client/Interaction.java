@@ -45,8 +45,8 @@ public class Interaction {
                 out.flush();
                 //command.clearFields();
 
-                /*String answer = (String) in.readObject();
-                System.out.println(answer);*/
+                String answer = (String) in.readObject();
+                System.out.println(answer);
 
             }
         } catch (ReadValueException e){

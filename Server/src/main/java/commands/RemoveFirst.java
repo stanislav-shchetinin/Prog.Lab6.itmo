@@ -3,6 +3,9 @@ package commands;
 import service.CollectionClass;
 import service.command.Command;
 import service.command.NoArgument;
+
+import java.io.ObjectOutputStream;
+
 /**
  * Класс команды: remove_first<p>
  * Реализует класс Command, чтобы можно было вызывать выполнение команды<p>

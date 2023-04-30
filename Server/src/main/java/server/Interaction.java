@@ -40,12 +40,12 @@ public class Interaction {
         }
     }
 
-    public static void executeCommands(CollectionClass collectionClass, ObjectInputStream in) throws IOException, ClassNotFoundException {
+    public static void executeCommands(CollectionClass collectionClass, ObjectInputStream in, ObjectOutputStream out) throws IOException, ClassNotFoundException {
         while (true){
             try {
                 Command command = (Command) in.readObject();
                 command.setCollection(collectionClass);
-                command.execute();
+                command.execute(out);
                 command.clearFields();
             } catch (NullPointerException e){
                 log.warning(e.getMessage());

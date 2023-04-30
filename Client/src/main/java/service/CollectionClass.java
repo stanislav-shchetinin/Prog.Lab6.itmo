@@ -3,27 +3,33 @@ package service;
 import base.Vehicle;
 import lombok.extern.java.Log;
 
-import java.util.*;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.PriorityQueue;
+import java.util.UUID;
+
 /**
  * Менеджер по работе с коллекцией<p>
  * Аннотация @Log создает поле логгера
  * */
 @Log
-public class CollectionClass{
+public class CollectionClass {
     private Date date;
     private PriorityQueue<Vehicle> collection = new PriorityQueue();
     /**
      * Поле хранит id всех объектов, чтобы отслеживать не уникальные id
      * */
     private HashSet<UUID> uuidHashSet = new HashSet<>();
-    public CollectionClass (PriorityQueue collection){
+    public CollectionClass(PriorityQueue collection){
         this.collection = collection;
         date = new Date(); //при создании устанавливает текущую дату
     }
     public CollectionClass(){
         date = new Date();
     }
-    public CollectionClass (CollectionClass collectionClass){
+    public CollectionClass(CollectionClass collectionClass){
         this.collection = new PriorityQueue<>(collectionClass.getCollection());
         this.date = collectionClass.getTime();
         this.uuidHashSet = new HashSet<>(collectionClass.getUuidHashSet());
@@ -59,19 +65,30 @@ public class CollectionClass{
         UUID id = collection.poll().getId();
         uuidHashSet.remove(id);
     }
-    public void printAscending(){
-        PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
-        while (!collectionCopy.isEmpty()){
-            System.out.println(collectionCopy.poll());
+    public void printAscending(ObjectOutputStream out){
+        try {
+            PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
+            while (!collectionCopy.isEmpty()){
+                out.writeObject(collectionCopy.poll().toString());
+            }
+            out.flush();
+        } catch (IOException e) {
+            log.warning(e.getMessage());
         }
+
     }
-    public void printUniqueEnginePower(){
-        PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
-        HashSet hashSet = new HashSet<Double>();
-        while (!collectionCopy.isEmpty()){
-            hashSet.add(collectionCopy.poll().getEnginePower());
+    public void printUniqueEnginePower(ObjectOutputStream out){
+        try {
+            PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
+            HashSet hashSet = new HashSet<Double>();
+            while (!collectionCopy.isEmpty()){
+                hashSet.add(collectionCopy.poll().getEnginePower());
+            }
+            out.writeObject(hashSet.toString());
+            out.flush();
+        } catch (IOException e) {
+            log.warning(e.getMessage());
         }
-        System.out.print(hashSet);
     }
     public void removeById (UUID id){
         PriorityQueue<Vehicle> collectionNew = new PriorityQueue<>();
@@ -85,15 +102,21 @@ public class CollectionClass{
         this.collection = new PriorityQueue<>(collectionNew);
     }
 
-    public void countByCapacity(Long capacity){
-        Integer count = 0;
-        PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
-        while (!collectionCopy.isEmpty()){
-            if (collectionCopy.poll().getCapacity().equals(capacity)){
-                count += 1;
+    public void countByCapacity(Long capacity, ObjectOutputStream out){
+        try {
+            Integer count = 0;
+            PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
+            while (!collectionCopy.isEmpty()){
+                if (collectionCopy.poll().getCapacity().equals(capacity)){
+                    count += 1;
+                }
             }
+            out.writeObject(count.toString());
+            out.flush();
+        } catch (IOException e) {
+            log.warning(e.getMessage());
         }
-        System.out.println(count); ////////////////////////////////////////////////////////////////
+
     }
 
     public void add(Vehicle vehicle){

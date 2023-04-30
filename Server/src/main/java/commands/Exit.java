@@ -4,6 +4,9 @@ import lombok.extern.java.Log;
 import service.CollectionClass;
 import service.command.Command;
 import service.command.NoArgument;
+
+import java.io.ObjectOutputStream;
+
 /**
  * Класс завершения программы: exit<p>
  * Реализует класс Command, чтобы можно было вызывать выполнение команды<p>

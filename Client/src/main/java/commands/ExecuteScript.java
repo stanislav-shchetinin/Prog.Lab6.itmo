@@ -12,7 +12,8 @@ import service.command.OneArgument;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.OutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -93,7 +94,7 @@ public class ExecuteScript implements Command, OneArgument {
         return "execute_script";
     }
     @Override
-    public void execute() {
+    public void execute(ObjectOutputStream out) throws IOException {
         if (file == null){
             log.warning("Недостаточно параметров, чтобы выполнить комманду");
             return;
@@ -128,7 +129,7 @@ public class ExecuteScript implements Command, OneArgument {
                 commandSetParametr(command, line);
                 try {
                     commandSetElement(command, line);
-                    command.execute();
+                    command.execute(out);
                 } catch (ReadValueException | IllegalAccessException e){
                     log.warning(e.getMessage());
                 }

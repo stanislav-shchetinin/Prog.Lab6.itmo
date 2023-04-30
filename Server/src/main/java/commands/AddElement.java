@@ -5,6 +5,8 @@ import service.CollectionClass;
 import service.command.Command;
 import service.command.ElementArgument;
 
+import java.io.ObjectOutputStream;
+
 /**
  * Класс команды добавления элемента: add {element}<p>
  * Реализует класс Command, чтобы можно было вызывать выполнение команды<p>

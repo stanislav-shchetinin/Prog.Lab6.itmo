@@ -45,7 +45,7 @@ public class Main {
             File file = (File) in.readObject();
 
             fromFileVehicle(collectionClass, new Scanner(parseFromCSVtoString(file))); //Считывание файла и запись его в collectionClass
-            Interaction.executeCommands(collectionClass, in);
+            Interaction.executeCommands(collectionClass, in, out);
 
         } catch (IOException | ClassNotFoundException e) {
             log.warning(e.getMessage());

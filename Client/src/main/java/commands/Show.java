@@ -1,14 +1,19 @@
 package commands;
 
+import lombok.extern.java.Log;
 import service.CollectionClass;
 import service.command.Command;
 import service.command.NoArgument;
+
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 /**
  * Класс команды: show<p>
  * Реализует класс Command, чтобы можно было вызывать выполнение команды<p>
  * Реализует маркировочный интерфейс NoArgument, чтобы можно было проверить какие аргументы принимает команда (без аргументов)<p>
  * */
+@Log
 public class Show implements Command, NoArgument {
     private CollectionClass collectionClass;
 
@@ -34,8 +39,13 @@ public class Show implements Command, NoArgument {
      * Из менеджера коллекции берется коллекция, переводится в строку и удаляется последний символ (лишняя запятая)
      * */
     @Override
-    public void execute() {
-        System.out.print(collectionClass.getCollection().toString().substring(1, collectionClass.getCollection().toString().length() - 1));
+    public void execute(ObjectOutputStream out) {
+        try {
+            out.writeObject(collectionClass.getCollection().toString().substring(1, collectionClass.getCollection().toString().length() - 1));
+            out.flush();
+        } catch (IOException e){
+            log.warning(e.getMessage());
+        }
     }
     @Override
     public void setCollection(CollectionClass collectionClass) {

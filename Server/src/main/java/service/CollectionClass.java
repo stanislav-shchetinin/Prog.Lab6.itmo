@@ -3,6 +3,8 @@ package service;
 import base.Vehicle;
 import lombok.extern.java.Log;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.*;
 /**
  * Менеджер по работе с коллекцией<p>
@@ -59,19 +61,30 @@ public class CollectionClass{
         UUID id = collection.poll().getId();
         uuidHashSet.remove(id);
     }
-    public void printAscending(){
-        PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
-        while (!collectionCopy.isEmpty()){
-            System.out.println(collectionCopy.poll());
+    public void printAscending(ObjectOutputStream out){
+        try {
+            PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
+            while (!collectionCopy.isEmpty()){
+                out.writeObject(collectionCopy.poll().toString());
+            }
+            out.flush();
+        } catch (IOException e) {
+            log.warning(e.getMessage());
         }
+
     }
-    public void printUniqueEnginePower(){
-        PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
-        HashSet hashSet = new HashSet<Double>();
-        while (!collectionCopy.isEmpty()){
-            hashSet.add(collectionCopy.poll().getEnginePower());
+    public void printUniqueEnginePower(ObjectOutputStream out){
+        try {
+            PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
+            HashSet hashSet = new HashSet<Double>();
+            while (!collectionCopy.isEmpty()){
+                hashSet.add(collectionCopy.poll().getEnginePower());
+            }
+            out.writeObject(hashSet.toString());
+            out.flush();
+        } catch (IOException e) {
+            log.warning(e.getMessage());
         }
-        System.out.print(hashSet);
     }
     public void removeById (UUID id){
         PriorityQueue<Vehicle> collectionNew = new PriorityQueue<>();
@@ -85,15 +98,21 @@ public class CollectionClass{
         this.collection = new PriorityQueue<>(collectionNew);
     }
 
-    public void countByCapacity(Long capacity){
-        Integer count = 0;
-        PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
-        while (!collectionCopy.isEmpty()){
-            if (collectionCopy.poll().getCapacity().equals(capacity)){
-                count += 1;
+    public void countByCapacity(Long capacity, ObjectOutputStream out){
+        try {
+            Integer count = 0;
+            PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
+            while (!collectionCopy.isEmpty()){
+                if (collectionCopy.poll().getCapacity().equals(capacity)){
+                    count += 1;
+                }
             }
+            out.writeObject(count.toString());
+            out.flush();
+        } catch (IOException e) {
+            log.warning(e.getMessage());
         }
-        System.out.println(count); ////////////////////////////////////////////////////////////////
+
     }
 
     public void add(Vehicle vehicle){

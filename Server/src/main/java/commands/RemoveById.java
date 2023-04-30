@@ -5,6 +5,7 @@ import service.CollectionClass;
 import service.command.Command;
 import service.command.OneArgument;
 
+import java.io.ObjectOutputStream;
 import java.util.UUID;
 /**
  * Класс команды: remove_by_id id<p>
