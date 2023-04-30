@@ -33,10 +33,12 @@ public class Help implements Command, NoArgument {
     @Override
     public void execute(ObjectOutputStream out) {
         try {
+            String result = "";
             ArrayList<Command> helpCommand = InitGlobalCollections.helpCommand();
             for (Command command : helpCommand){
-                out.writeObject(command.description());
+                result += command.description() + "\n";
             }
+            out.writeObject(result);
             out.flush();
         } catch (IOException e){
             log.warning(e.getMessage());

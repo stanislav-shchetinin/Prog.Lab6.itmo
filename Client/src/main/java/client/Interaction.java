@@ -1,5 +1,7 @@
 package client;
 
+import commands.Exit;
+import commands.Save;
 import exceptions.ReadValueException;
 import lombok.extern.java.Log;
 import service.command.Command;
@@ -38,15 +40,18 @@ public class Interaction {
         try {
             while (true){
                 Command command = inputCommand();
-                if (command == null){
-                    continue;
-                }
-                out.writeObject(command);
-                out.flush();
-                //command.clearFields();
+                if (command instanceof Exit){
+                    out.writeObject(new Save(new File("Server/files/file")));
+                    out.flush();
+                    String answer = (String) in.readObject();
+                    command.execute();
+                } else if (command != null){
+                    out.writeObject(command);
+                    out.flush();
 
-                String answer = (String) in.readObject();
-                System.out.println(answer);
+                    String answer = (String) in.readObject();
+                    System.out.println(answer);
+                }
 
             }
         } catch (ReadValueException e){

@@ -30,6 +30,9 @@ public class Save implements Command, NoArgument {
         this.collectionClass = collectionClass;
         this.file = file;
     }
+    public Save(File file){
+        this.file = file;
+    }
     /**
      * Пустой конструктор нужен для создания пустых объектов в списках команд
      * */

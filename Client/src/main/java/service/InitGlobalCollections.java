@@ -25,7 +25,6 @@ public class InitGlobalCollections {
         map.put("update_id", new UpdateId());
         map.put("remove_by_id", new RemoveById());
         map.put("clear", new Clear());
-        map.put("save", new Save());
         map.put("execute_script", ExecuteScript.getInstance());
         map.put("exit", new Exit());
         map.put("remove_first", new RemoveFirst());
@@ -42,7 +41,7 @@ public class InitGlobalCollections {
     public static ArrayList<Command> helpCommand(){
         return new ArrayList<>(List.of(
                 new Help(), new Info(), new Show(), new AddElement(), new UpdateId(),
-                new RemoveById(), new Clear(), new Save(), new ExecuteScript(), new Exit(),
+                new RemoveById(), new Clear(), new ExecuteScript(), new Exit(),
                 new RemoveFirst(), new AddIfMax(), new AddIfMin(), new CountByCapacity(), new PrintAscending(),
                 new PrintUniqueEnginePower()
         ));
