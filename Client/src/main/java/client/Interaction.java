@@ -3,6 +3,7 @@ package client;
 import commands.Exit;
 import commands.Save;
 import exceptions.ReadValueException;
+import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 import service.command.Command;
 
@@ -15,8 +16,8 @@ import static console.Console.inputCommand;
 @Log
 public class Interaction {
 
+    @SneakyThrows
     public static Socket Connection(String serverName, int port){
-        Scanner in = new Scanner(System.in);
         while (true){
             try {
                 System.out.println(String.format("Подключение к %s на порт %d", serverName, port));
@@ -25,9 +26,24 @@ public class Interaction {
                 return client;
             } catch (IOException e) {
                 log.warning("Ошибка подключения к серверу");
-                System.out.println("Введите другой порт");
-                port = in.nextInt();
+                System.out.println("Переподключение...");
+                Thread.sleep(3000);
             }
+        }
+    }
+
+    public static void workWithServer(Socket client, File file){
+        try (OutputStream outputStream = client.getOutputStream();
+             InputStream inputStream = client.getInputStream();
+             ObjectOutputStream out = new ObjectOutputStream(outputStream);
+             ObjectInputStream in = new ObjectInputStream(inputStream)) {
+
+            Interaction.fileToServer(out, file);
+            Interaction.commandsToServer(out, in);
+
+
+        } catch (IOException | ClassNotFoundException e) {
+            log.warning(e.getMessage());
         }
     }
 

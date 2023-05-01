@@ -25,19 +25,7 @@ public class Main {
 
         Socket client = Interaction.Connection(serverName, port);
         File file = getFile(new Scanner(System.in)); //NAME_FILE
-
-        try (OutputStream outputStream = client.getOutputStream();
-             InputStream inputStream = client.getInputStream();
-             ObjectOutputStream out = new ObjectOutputStream(outputStream);
-             ObjectInputStream in = new ObjectInputStream(inputStream)) {
-
-            Interaction.fileToServer(out, file);
-            Interaction.commandsToServer(out, in);
-
-
-        } catch (IOException | ClassNotFoundException e) {
-            log.warning(e.getMessage());
-        }
+        Interaction.workWithServer(client, file);
 
     }
 }   
