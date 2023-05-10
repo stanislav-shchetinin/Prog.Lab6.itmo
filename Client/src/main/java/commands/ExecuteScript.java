@@ -10,15 +10,9 @@ import service.command.Command;
 import service.command.ElementArgument;
 import service.command.OneArgument;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 import static service.InitGlobalCollections.mapCommand;
 import static service.InitGlobalCollections.setNoInputTypes;
@@ -35,6 +29,8 @@ import static service.Validate.thisType;
 public class ExecuteScript implements Command, OneArgument {
 
     private CollectionClass collectionClass;
+    private ObjectInputStream in;
+    private ObjectOutputStream out;
     private File file;
     private File fileSave;
     private HashSet<String> nameFiles = new HashSet<>();
@@ -66,6 +62,13 @@ public class ExecuteScript implements Command, OneArgument {
      * */
     public ExecuteScript(){}
 
+    public void setIn(ObjectInputStream in) {
+        this.in = in;
+    }
+    public void setOut(ObjectOutputStream out) {
+        this.out = out;
+    }
+
     @Override
     public void setParametr(String nameFile) {
         try {
@@ -93,18 +96,19 @@ public class ExecuteScript implements Command, OneArgument {
     public String name() {
         return "execute_script";
     }
-    @Override
-    public void execute(ObjectOutputStream out) throws IOException {
+
+    public List<Command> methodForScript() {
+        List<Command> list = new ArrayList<>();
         if (file == null){
-            log.warning("Недостаточно параметров, чтобы выполнить комманду");
-            return;
+            log.warning("Недостаточно параметров, чтобы выполнить команду");
+            return list;
         }
         /**
          * Текущее имя файла встречалось ранее
          * */
         if (nameFiles.contains(file.getName())){
             log.warning("Вызов файлов зациклился");
-            return;
+            return list;
         }
         nameFiles.add(file.getName());
         mapCommand = mapCommand();
@@ -127,17 +131,21 @@ public class ExecuteScript implements Command, OneArgument {
                     continue;
                 }
                 commandSetParametr(command, line);
+
                 try {
                     commandSetElement(command, line);
-                    command.execute(out);
+
+                    list.add(command);
+
                 } catch (ReadValueException | IllegalAccessException e){
                     log.warning(e.getMessage());
                 }
-                command.clearFields();
+                //command.clearFields();
             }
         } catch (FileNotFoundException e) {
             log.warning("Файл не найден");
         }
+        return list;
     }
     @Override
     public void setCollection(CollectionClass collectionClass) {

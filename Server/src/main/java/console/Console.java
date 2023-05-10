@@ -57,42 +57,7 @@ public class Console {
 
         }
     }
-    /**
-     * Метод для ввода команд из консоли
-     * <p>
-     * <b>file</b> нужен для получения команды Save в mapCommand
-     * */
-    public static void inputCommands(CollectionClass collectionClass, File file) {
-        HashMap<String, Command> mapCommand = InitGlobalCollections.mapCommand(collectionClass, file);
-        Scanner in = new Scanner(System.in);
-        while (true){
-            try {
-                String[] arrayString = in.nextLine().trim().split(" "); //разрез строки по пробелу и удаление крайних пробелов
-                if (arrayString.length == 0){
-                    continue;
-                }
-                String nameCommand = arrayString[0];
-                Command command = mapCommand.get(nameCommand);
-                if (command == null){
-                    log.warning("Не существует команды с указанным названием");
-                    continue;
-                }
-                if (arrayString.length != 1){
-                    command.setParametr(arrayString[1]);
-                }
-                if (command instanceof ElementArgument){
-                    Vehicle vehicle = inputVehicle(collectionClass);
-                    command.setElement(vehicle);
-                }
-                command.execute();
-                command.clearFields();
-            } catch (NoSuchElementException e){
-                log.warning("Не введены значения");
-                System.exit(1);
-            }
-        }
 
-    }
     /**
      * Вспомогательный метод для ввода Vehicle: выдает сообщение пользователю с просьбой о вводе данных и устанавливает значения в поле
      * */

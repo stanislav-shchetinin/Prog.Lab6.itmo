@@ -1,5 +1,6 @@
 package server;
 
+import commands.ExecuteScript;
 import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 import service.CollectionClass;
@@ -9,6 +10,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.Timer;
 
 import static service.FileRead.fromFileVehicle;
 import static service.Parse.parseFromCSVtoString;
@@ -68,28 +70,28 @@ public class Interaction {
             }
         }
     }
-    public static void outputFile(File file){
-        try {
-            BufferedReader fin = new BufferedReader(new FileReader(file));
-            String line;
-            while ((line = fin.readLine()) != null) System.out.println(line);
-            fin.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public static void executeCommands(CollectionClass collectionClass, ObjectInputStream in, ObjectOutputStream out) throws IOException, ClassNotFoundException {
         while (true){
             try {
+
+                isExit();
                 Command command = (Command) in.readObject();
                 command.setCollection(collectionClass);
                 command.execute(out);
                 command.clearFields();
+
             } catch (NullPointerException e){
                 log.warning(e.getMessage());
+            }
+        }
+    }
+
+    private static void isExit() throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        if (System.in.available() > 0){
+            if (scanner.next().equals("exit")){
+                System.exit(0);
             }
         }
     }

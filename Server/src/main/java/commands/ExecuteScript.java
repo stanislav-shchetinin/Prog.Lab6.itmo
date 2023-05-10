@@ -97,6 +97,7 @@ public class ExecuteScript implements Command, OneArgument {
     public void execute(ObjectOutputStream out) throws IOException {
         if (file == null){
             log.warning("Недостаточно параметров, чтобы выполнить комманду");
+            out.writeObject("");
             return;
         }
         /**

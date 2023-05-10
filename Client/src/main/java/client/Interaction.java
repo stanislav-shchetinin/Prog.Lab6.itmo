@@ -1,5 +1,6 @@
 package client;
 
+import commands.ExecuteScript;
 import commands.Exit;
 import commands.Save;
 import exceptions.ReadValueException;
@@ -9,6 +10,7 @@ import service.command.Command;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.List;
 import java.util.Scanner;
 
 import static console.Console.inputCommand;
@@ -63,27 +65,36 @@ public class Interaction {
     }
 
     public static void commandsToServer(ObjectOutputStream out, ObjectInputStream in) throws IOException, ClassNotFoundException {
+        ExecuteScript.getInstance().setIn(in);
+        ExecuteScript.getInstance().setOut(out);
         try {
             while (true){
                 Command command = setCommand();
-                if (command instanceof Exit){
-                    out.writeObject(new Save(new File("Server/files/file")));
-                    out.flush();
-                    String answer = (String) in.readObject();
-                    command.execute();
-                } else if (command != null){
-                    out.writeObject(command);
-                    out.flush();
-
-                    String answer = (String) in.readObject();
-                    System.out.println(answer);
-                }
-
+                processingCommand(command, out, in);
             }
         } catch (ReadValueException e){
             log.warning(e.getMessage());
         }
 
+    }
+
+    private static void processingCommand(Command command, ObjectOutputStream out, ObjectInputStream in) throws IOException, ClassNotFoundException{
+        if (command instanceof Exit){
+            out.writeObject(new Save(new File("Server/files/file")));
+            out.flush();
+            String answer = (String) in.readObject();
+            command.execute();
+        } else if (command instanceof ExecuteScript){
+            List<Command> list = ((ExecuteScript) command).methodForScript();
+            for (Command commandInES : list){
+                processingCommand(commandInES, out, in);
+            }
+        } else if (command != null){
+            out.writeObject(command);
+            out.flush();
+            String answer = (String) in.readObject();
+            System.out.println(answer);
+        }
     }
 
 }
