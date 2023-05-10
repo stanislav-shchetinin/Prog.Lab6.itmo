@@ -1,0 +1,7 @@
+add Max7 100.12122 -769 1 1 1 rjefrjf
+add Max8 100.12122 -769 1 1 1 123
+add Max9 100.12122 -769 1 1 1 PLANE
+add Max10 100.12122 -769 1 1 1 1
+execute_script files/test_files/test_cases/test18/script2
+show
+help
