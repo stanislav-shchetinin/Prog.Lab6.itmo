@@ -4,7 +4,6 @@ import base.VehicleType;
 import commands.*;
 import service.command.Command;
 
-import java.io.File;
 import java.time.ZonedDateTime;
 import java.util.*;
 
@@ -16,11 +15,10 @@ public class InitGlobalCollections {
     /**
      * Map для всех команд
      * */
-    public static HashMap<String, Command> mapCommand(CollectionClass collectionClass, File file){
+    public static HashMap<String, Command> mapCommand(){
         List<Command> list = helpCommand();
         HashMap<String, Command> map = new HashMap<>();
         for (Command command : list){
-            command.setCollection(collectionClass);
             map.put(command.name(), command);
         }
         return map;
@@ -31,7 +29,7 @@ public class InitGlobalCollections {
     public static ArrayList<Command> helpCommand(){
         return new ArrayList<>(List.of(
                 new Help(), new Info(), new Show(), new AddElement(), new UpdateId(),
-                new RemoveById(), new Clear(), new Save(), new ExecuteScript(), new Exit(),
+                new RemoveById(), new Clear(), ExecuteScript.getInstance(), new Exit(),
                 new RemoveFirst(), new AddIfMax(), new AddIfMin(), new CountByCapacity(), new PrintAscending(),
                 new PrintUniqueEnginePower()
         ));

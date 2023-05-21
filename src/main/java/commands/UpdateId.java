@@ -61,7 +61,7 @@ public class UpdateId implements Command, ElementArgument, OneArgument {
     public void execute(ObjectOutputStream out) throws IOException {
         if (pair.getR() == null || pair.getL() == null){
             throw new IOException("Недостаточно значений для выполнения команды");
-        } else if (!collectionClass.getUuidHashSet().contains(pair.getL())){
+        } else if (!collectionClass.getUuidHashSet().contains(pair.getR())){
             out.writeObject("Нет такого id");
             out.flush();
             throw new IOException("Нет такого id");

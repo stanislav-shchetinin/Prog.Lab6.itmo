@@ -45,14 +45,5 @@ public class InitGlobalCollections {
         }
         return res;
     }
-    /**
-     * Set для примитивных типов данных - типы данных, на которых останавливаем рекурсию
-     * */
-    public static HashSet<Class> primitiveTypes(){
-        return new HashSet<>(List.of(
-                Double.class, Float.class, double.class, UUID.class, String.class, ZonedDateTime.class, Long.class, VehicleType.class,
-                float.class
-        ));
-    }
 
 }

@@ -4,22 +4,19 @@ import base.Vehicle;
 import exceptions.ReadValueException;
 
 import lombok.extern.java.Log;
-import service.CollectionClass;
+import service.InitGlobalCollections;
 import service.NoInputTypes;
 import service.command.Command;
-import service.InitGlobalCollections;
 import service.command.ElementArgument;
 import service.command.OneArgument;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.*;
-import java.util.concurrent.ConcurrentMap;
 
 import static service.InitGlobalCollections.setNoInputTypes;
-import static service.Parse.formatInput;
+import static service.Validate.formatInput;
 import static service.Validate.*;
 /**
  * Класс, в котором реализовано взаимодействие с пользователем (ввод данных из консоли)

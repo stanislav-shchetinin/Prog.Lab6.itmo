@@ -4,13 +4,15 @@ import base.Coordinates;
 import base.Vehicle;
 import exceptions.ReadValueException;
 import lombok.extern.java.Log;
-import service.CollectionClass;
 import service.NoInputTypes;
 import service.command.Command;
 import service.command.ElementArgument;
 import service.command.OneArgument;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.Field;
 import java.util.*;
 
@@ -28,7 +30,6 @@ import static service.Validate.thisType;
 @Log
 public class ExecuteScript implements Command, OneArgument {
 
-    private CollectionClass collectionClass;
     private ObjectInputStream in;
     private ObjectOutputStream out;
     private File file;
@@ -40,21 +41,13 @@ public class ExecuteScript implements Command, OneArgument {
     /**
      * Один объект класса на весь проекта, чтобы не перезаписывался Set для проверки на цикл
      * */
-    public static ExecuteScript getInstance(CollectionClass collectionClass, File fileSave) {
-        if (Instance == null){
-            Instance = new ExecuteScript(collectionClass, fileSave);
-        }
-        Instance.collectionClass = new CollectionClass(collectionClass);
-        return Instance;
-    }
     public static ExecuteScript getInstance() {
         if (Instance == null){
             Instance = new ExecuteScript();
         }
         return Instance;
     }
-    private ExecuteScript(CollectionClass collectionClass, File fileSave){
-        this.collectionClass = collectionClass;
+    private ExecuteScript(File fileSave){
         this.fileSave = fileSave;
     }
     /**
@@ -144,10 +137,6 @@ public class ExecuteScript implements Command, OneArgument {
             log.warning("Файл не найден");
         }
         return list;
-    }
-    @Override
-    public void setCollection(CollectionClass collectionClass) {
-        this.collectionClass = collectionClass;
     }
 
     /**

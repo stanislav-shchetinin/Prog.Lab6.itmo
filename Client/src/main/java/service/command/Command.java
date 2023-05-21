@@ -1,11 +1,9 @@
 package service.command;
 
 import base.Vehicle;
-import service.CollectionClass;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
 
 /**
@@ -19,7 +17,6 @@ public interface Command extends Serializable {
         out.writeObject(null);
         out.flush();
     }
-    void setCollection(CollectionClass collectionClass);
     default void setElement(Vehicle vehicle){}
     default void setParametr(String parametr){}
     default void clearFields(){}

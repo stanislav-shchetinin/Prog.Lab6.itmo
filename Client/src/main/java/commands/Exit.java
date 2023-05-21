@@ -1,7 +1,6 @@
 package commands;
 
 import lombok.extern.java.Log;
-import service.CollectionClass;
 import service.command.Command;
 import service.command.NoArgument;
 
@@ -28,6 +27,4 @@ public class Exit implements Command, NoArgument {
         log.info("Программа завершает выполнение: была вызвана команда exit");
         System.exit(0);
     }
-    @Override
-    public void setCollection(CollectionClass collectionClass) {}
 }

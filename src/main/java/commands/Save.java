@@ -34,6 +34,7 @@ public class Save implements Command, NoArgument {
         this.file = file;
     }
     public Save(File file){
+        this.collectionClass = collectionClass;
         this.file = file;
     }
     /**

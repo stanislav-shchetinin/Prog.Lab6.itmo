@@ -1,6 +1,5 @@
 package server;
 
-import commands.ExecuteScript;
 import exceptions.ReadValueException;
 import lombok.SneakyThrows;
 import lombok.extern.java.Log;
@@ -53,8 +52,10 @@ public class Interaction {
             fromFileVehicle(collectionClass, new Scanner(parseFromCSVtoString(file))); //Считывание файла и запись его в collectionClass
             Interaction.executeCommands(collectionClass, in, out);
 
-        } catch (IOException | ClassNotFoundException | IllegalArgumentException e) {
+        } catch (IOException | IllegalArgumentException e) {
             log.warning(e.getMessage());
+        } catch (ClassNotFoundException e){
+            log.warning("Класс не найден");
         }
     }
     public static void workWithClient(ServerSocket serverSocket){
@@ -77,7 +78,7 @@ public class Interaction {
 
     public static void executeCommands(CollectionClass collectionClass, ObjectInputStream in, ObjectOutputStream out) throws IOException, ClassNotFoundException, ReadValueException {
         while (true){
-            isExit();
+            //isExit();
             Command command = (Command) in.readObject();
             command.setCollection(collectionClass);
             command.execute(out);
