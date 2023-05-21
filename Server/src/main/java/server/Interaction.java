@@ -1,6 +1,7 @@
 package server;
 
 import commands.ExecuteScript;
+import exceptions.ReadValueException;
 import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 import service.CollectionClass;
@@ -12,20 +13,22 @@ import java.net.Socket;
 import java.util.Scanner;
 import java.util.Timer;
 
+import static java.lang.Math.max;
 import static service.FileRead.fromFileVehicle;
 import static service.Parse.parseFromCSVtoString;
 
 @Log
 public class Interaction {
     @SneakyThrows
-    public static ServerSocket Connection(int port){
+    public static ServerSocket connection(int port){
         while (true){
             try {
                 System.out.println("Подключение к серверу");
                 return new ServerSocket(port);
-            } catch (IOException ex) {
+            } catch (IOException e) {
                 log.warning("Ошибка при подключении сервера");
                 System.out.println("Переподключение...");
+                port = max((port + 1)%10000, 2000); //port увеличивается на 1 и находится между 2000 и 9999
                 sleep();
             }
         }
@@ -39,7 +42,7 @@ public class Interaction {
         }
     }
 
-    private static void mainTaskServer(Socket server, CollectionClass collectionClass){
+    private static void mainTaskServer(Socket server, CollectionClass collectionClass) throws ReadValueException{
         try (OutputStream outputStream = server.getOutputStream();
              InputStream inputStream = server.getInputStream();
              ObjectInputStream in = new ObjectInputStream(inputStream);
@@ -55,11 +58,10 @@ public class Interaction {
         }
     }
     public static void workWithClient(ServerSocket serverSocket){
-        Socket server = null;
         while (true){
-            try {
+            try (Socket server = serverSocket.accept()) {
                 System.out.println("Создание клиента на сервере");
-                server = serverSocket.accept();
+
                 CollectionClass collectionClass = new CollectionClass(); //Менеджер коллекции
                 mainTaskServer(server, collectionClass);
 
@@ -67,31 +69,27 @@ public class Interaction {
                 log.warning("Ошибка при создании клиента");
                 System.out.println("Переподключение...");
                 sleep();
+            } catch (ReadValueException e){
+                break;
             }
         }
     }
 
-    public static void executeCommands(CollectionClass collectionClass, ObjectInputStream in, ObjectOutputStream out) throws IOException, ClassNotFoundException {
+    public static void executeCommands(CollectionClass collectionClass, ObjectInputStream in, ObjectOutputStream out) throws IOException, ClassNotFoundException, ReadValueException {
         while (true){
-            try {
-
-                isExit();
-                Command command = (Command) in.readObject();
-                command.setCollection(collectionClass);
-                command.execute(out);
-                command.clearFields();
-
-            } catch (NullPointerException e){
-                log.warning(e.getMessage());
-            }
+            isExit();
+            Command command = (Command) in.readObject();
+            command.setCollection(collectionClass);
+            command.execute(out);
+            command.clearFields();
         }
     }
 
-    private static void isExit() throws IOException {
+    public static void isExit() throws IOException, ReadValueException {
         Scanner scanner = new Scanner(System.in);
         if (System.in.available() > 0){
             if (scanner.next().equals("exit")){
-                System.exit(0);
+                throw new ReadValueException("exit");
             }
         }
     }

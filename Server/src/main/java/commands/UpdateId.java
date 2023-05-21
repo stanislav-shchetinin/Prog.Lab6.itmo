@@ -59,10 +59,16 @@ public class UpdateId implements Command, ElementArgument, OneArgument {
     }
 
     @Override
-    public void execute() throws IOException {
+    public void execute(ObjectOutputStream out) throws IOException {
         if (pair.getR() == null || pair.getL() == null){
             throw new IOException("Недостаточно значений для выполнения команды");
+        } else if (!collectionClass.getUuidHashSet().contains(pair.getR())){
+            out.writeObject("Нет такого id");
+            out.flush();
+            throw new IOException("Нет такого id");
         } else {
+            out.writeObject("");
+            out.flush();
             collectionClass.updateById(pair);
         }
     }

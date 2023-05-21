@@ -196,11 +196,7 @@ public class ExecuteScript implements Command, OneArgument {
             /**
              * Установить в поле полученyю str (перед этим нужно пройти проверку на корректность)
              * */
-            try {
-                field.set(vehicle, thisType(str, field, collectionClass));
-            } catch (ReadValueException | IllegalAccessException e) {
-                throw e;
-            }
+            field.set(vehicle, thisType(str, field, collectionClass));
             ++num;
         }
         return  vehicle;

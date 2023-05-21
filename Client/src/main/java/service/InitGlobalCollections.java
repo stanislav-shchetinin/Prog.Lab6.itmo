@@ -17,22 +17,11 @@ public class InitGlobalCollections {
      * Map для всех команд
      * */
     public static HashMap<String, Command> mapCommand(){
+        List<Command> list = helpCommand();
         HashMap<String, Command> map = new HashMap<>();
-        map.put("help", new Help());
-        map.put("info", new Info());
-        map.put("show", new Show());
-        map.put("add", new AddElement());
-        map.put("update_id", new UpdateId());
-        map.put("remove_by_id", new RemoveById());
-        map.put("clear", new Clear());
-        map.put("execute_script", ExecuteScript.getInstance());
-        map.put("exit", new Exit());
-        map.put("remove_first", new RemoveFirst());
-        map.put("add_if_max", new AddIfMax());
-        map.put("add_if_min", new AddIfMin());
-        map.put("count_by_capacity", new CountByCapacity());
-        map.put("print_ascending", new PrintAscending());
-        map.put("print_unique_engine_power", new PrintUniqueEnginePower());
+        for (Command command : list){
+            map.put(command.name(), command);
+        }
         return map;
     }
     /**
@@ -41,7 +30,7 @@ public class InitGlobalCollections {
     public static ArrayList<Command> helpCommand(){
         return new ArrayList<>(List.of(
                 new Help(), new Info(), new Show(), new AddElement(), new UpdateId(),
-                new RemoveById(), new Clear(), new ExecuteScript(), new Exit(),
+                new RemoveById(), new Clear(), ExecuteScript.getInstance(), new Exit(),
                 new RemoveFirst(), new AddIfMax(), new AddIfMin(), new CountByCapacity(), new PrintAscending(),
                 new PrintUniqueEnginePower()
         ));

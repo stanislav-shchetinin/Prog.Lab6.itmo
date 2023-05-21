@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
+import static client.Interaction.inputPort;
 import static console.Console.*;
 
 /**
@@ -20,12 +21,12 @@ public class Main {
      */
 
     public static final String serverName = "localhost";
-    public static final int port = 4782;
+    public static int port = 4782;
     public static void main(String[] args) {
-
-        Socket client = Interaction.Connection(serverName, port);
-        File file = getFile(new Scanner(System.in)); //NAME_FILE
-        Interaction.workWithServer(client, file);
-
+        Scanner scanner = new Scanner(System.in);
+        port = inputPort(scanner);
+        Socket client = Interaction.connection(serverName, port);
+        File file = getFile(scanner); //NAME_FILE
+        Interaction.workWithServer(client, file, scanner);
     }
 }   

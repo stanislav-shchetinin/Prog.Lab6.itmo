@@ -31,11 +31,11 @@ public class Main {
      * Метод main - стартовая точка проекта
      */
      public static final String serverName = "localhost";
-    public static final int port = 4782;
+    public static int port = 4782;
     public static void main(String[] args) {
 
-        ServerSocket serverSocket = Interaction.Connection(port);
+        ServerSocket serverSocket = Interaction.connection(port);
+        System.out.println(String.format("Порт для подключения клиентов %d", serverSocket.getLocalPort()));
         Interaction.workWithClient(serverSocket);
-
     }
 }   

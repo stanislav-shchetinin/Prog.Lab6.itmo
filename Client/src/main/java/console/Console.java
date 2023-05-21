@@ -9,6 +9,7 @@ import service.NoInputTypes;
 import service.command.Command;
 import service.InitGlobalCollections;
 import service.command.ElementArgument;
+import service.command.OneArgument;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -51,7 +52,7 @@ public class Console {
                 }
             } catch (FileNotFoundException e){
                 log.warning(e.getMessage());
-            } catch (NullPointerException e){
+            } catch (NullPointerException e){ //При введении ^D
                 log.warning("Не введены значения");
                 System.exit(1); //1 - означает ошибку no line из-за которой произошло завершение
             }
@@ -64,21 +65,23 @@ public class Console {
      * <p>
      * <b>file</b> нужен для получения команды Save в mapCommand
      * */
-    public static Command inputCommand() throws ReadValueException, IllegalArgumentException{
+    public static Command inputCommand(Scanner in) throws ReadValueException, IllegalArgumentException, NoSuchElementException{
         HashMap<String, Command> mapCommand = InitGlobalCollections.mapCommand();
-        Scanner in = new Scanner(System.in);
+
         try {
             String[] arrayString = in.nextLine().trim().split(" "); //разрез строки по пробелу и удаление крайних пробелов
             if (arrayString.length == 0){
-                return null;
+                throw new IllegalArgumentException("Передана пустая строка");
             }
             String nameCommand = arrayString[0];
             Command command = mapCommand.get(nameCommand);
             if (command == null){
-                log.warning("Не существует команды с указанным названием");
-                return null;
+                throw new IllegalArgumentException("Не существует команды с указанным названием");
             }
-            if (arrayString.length != 1){
+            if (command instanceof OneArgument){
+                if (arrayString.length < 2){
+                    throw new IllegalArgumentException("Недостаточно аргументов");
+                }
                 command.setParametr(arrayString[1]);
             }
             if (command instanceof ElementArgument) {
@@ -92,7 +95,7 @@ public class Console {
             * */
             return command;
         } catch (NoSuchElementException e){
-            throw new ReadValueException("Не введены значения");
+            throw new NoSuchElementException("Не введены значения");
         }
 
     }

@@ -16,7 +16,7 @@ public interface Command extends Serializable {
     default void execute() throws IOException {}
     default void execute(ObjectOutputStream out) throws IOException{
         execute();
-        out.writeObject("");
+        out.writeObject(null);
         out.flush();
     }
     void setCollection(CollectionClass collectionClass);

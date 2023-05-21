@@ -123,6 +123,7 @@ public class CollectionClass{
     public void updateById(Pair<Vehicle, UUID> pair){
         Vehicle vehicleNew = pair.getL();
         UUID id = pair.getR();
+        vehicleNew.setId(id);
 
         PriorityQueue<Vehicle> collectionNew = new PriorityQueue<>();
         while (!collection.isEmpty()){

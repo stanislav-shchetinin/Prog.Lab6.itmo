@@ -97,7 +97,7 @@ public class ExecuteScript implements Command, OneArgument {
         return "execute_script";
     }
 
-    public List<Command> methodForScript() {
+    public List<Command> getCommandsFromScript() {
         List<Command> list = new ArrayList<>();
         if (file == null){
             log.warning("Недостаточно параметров, чтобы выполнить команду");
@@ -106,6 +106,7 @@ public class ExecuteScript implements Command, OneArgument {
         /**
          * Текущее имя файла встречалось ранее
          * */
+
         if (nameFiles.contains(file.getName())){
             log.warning("Вызов файлов зациклился");
             return list;
@@ -134,13 +135,10 @@ public class ExecuteScript implements Command, OneArgument {
 
                 try {
                     commandSetElement(command, line);
-
                     list.add(command);
-
                 } catch (ReadValueException | IllegalAccessException e){
                     log.warning(e.getMessage());
                 }
-                //command.clearFields();
             }
         } catch (FileNotFoundException e) {
             log.warning("Файл не найден");
@@ -203,11 +201,9 @@ public class ExecuteScript implements Command, OneArgument {
             /**
              * Установить в поле полученyю str (перед этим нужно пройти проверку на корректность)
              * */
-            try {
-                field.set(vehicle, thisType(str, field));
-            } catch (ReadValueException | IllegalAccessException e) {
-                throw e;
-            }
+
+            field.set(vehicle, thisType(str, field));
+
             ++num;
         }
         return  vehicle;

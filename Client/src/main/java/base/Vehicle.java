@@ -25,6 +25,9 @@ public class  Vehicle implements Comparable<Vehicle>, Serializable {
     public void setName(String name) {
         this.name = name;
     }
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public double getEnginePower() {
         return enginePower;
