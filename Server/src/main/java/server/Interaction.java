@@ -1,5 +1,6 @@
 package server;
 
+import commands.Save;
 import exceptions.ReadValueException;
 import lombok.SneakyThrows;
 import lombok.extern.java.Log;
@@ -59,12 +60,15 @@ public class Interaction {
         }
     }
     public static void workWithClient(ServerSocket serverSocket){
+
+        CollectionClass collectionClass = new CollectionClass(); //Менеджер коллекции
+
         while (true){
             try (Socket server = serverSocket.accept()) {
                 System.out.println("Создание клиента на сервере");
 
-                CollectionClass collectionClass = new CollectionClass(); //Менеджер коллекции
                 mainTaskServer(server, collectionClass);
+                specialCommand(collectionClass);
 
             } catch (IOException ex) {
                 log.warning("Ошибка при создании клиента");
@@ -78,7 +82,6 @@ public class Interaction {
 
     public static void executeCommands(CollectionClass collectionClass, ObjectInputStream in, ObjectOutputStream out) throws IOException, ClassNotFoundException, ReadValueException {
         while (true){
-            //isExit();
             Command command = (Command) in.readObject();
             command.setCollection(collectionClass);
             command.execute(out);
@@ -86,12 +89,19 @@ public class Interaction {
         }
     }
 
-    public static void isExit() throws IOException, ReadValueException {
+    @SneakyThrows
+    public static void specialCommand(CollectionClass collectionClass) throws IOException, ReadValueException {
         Scanner scanner = new Scanner(System.in);
-        if (System.in.available() > 0){
-            if (scanner.next().equals("exit")){
-                throw new ReadValueException("exit");
+        for (int numIteration = 0; numIteration < 10; ++numIteration){
+            if (System.in.available() > 0){
+                if (scanner.next().trim().equals("exit")){
+                    throw new ReadValueException("exit");
+                } else if (scanner.next().equals("save")){
+                    System.out.println("Сохранение коллекции");
+                    new Save(collectionClass, new File("Server/files/file")).execute();
+                }
             }
+            Thread.sleep(500);
         }
     }
 

@@ -10,12 +10,15 @@ import service.command.Command;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import static console.Console.inputCommand;
-
+/**
+ * Соединение с сервером
+ * */
 @Log
 public class Interaction {
 
@@ -36,8 +39,15 @@ public class Interaction {
     }
 
     public static int inputPort(Scanner scanner){
-        System.out.println("Введите порт");
-        return scanner.nextInt(); //Обработать произвольный ввод
+        while (true){
+            System.out.println("Введите порт");
+            String portString = scanner.next().trim();
+            if (portString.chars().allMatch( Character::isDigit)){ //Представима ли строка числом
+                return Integer.parseInt(portString);
+            } else {
+                log.warning("Передано не числовое значение");
+            }
+        }
     }
 
     public static void workWithServer(Socket client, File file, Scanner scanner){
@@ -87,6 +97,7 @@ public class Interaction {
             for (Command commandInES : list){
                 processingCommand(commandInES, out, in);
             }
+            ExecuteScript.getInstance().clearFields();
         } else if (command != null){
             out.writeObject(command);
             out.flush();

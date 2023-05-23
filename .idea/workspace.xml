@@ -11,18 +11,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="165be659-3698-469e-afce-de9a86e190bd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/base/Coordinates.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/base/Vehicle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/base/VehicleType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/base/Coordinates.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/base/Vehicle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/base/VehicleType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/console/Console.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/exceptions/ReadTypeException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/exceptions/ReadValueException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/Vehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/client/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/client/Interaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/commands/ExecuteScript.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/commands/ExecuteScript.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/files/file" beforeDir="false" afterPath="$PROJECT_DIR$/Server/files/file" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/server/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/server/Interaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Client_jar/Client.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Client_jar/Client.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_jar/Server.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Server_jar/Server.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/Save.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/commands/Save.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,26 +48,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "jdk.selected.JAVA_MODULE": "corretto-17",
-    "last_opened_file_path": "C:/ЛабораторныеРаботы/2сем/Программирование/ЛР6/Lab6/src/main/java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "AndroidSdkUpdater"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/ЛабораторныеРаботы/2сем/Программирование/ЛР6/Lab6/Client/files&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\ЛабораторныеРаботы\2сем\Программирование\ЛР6\Lab6\Client\files" />
       <recent name="C:\ЛабораторныеРаботы\2сем\Программирование\ЛР6\Lab6\src\main\java" />
       <recent name="C:\ЛабораторныеРаботы\2сем\Программирование\ЛР6\Lab6\Client\src\main\java\commands" />
       <recent name="C:\ЛабораторныеРаботы\2сем\Программирование\ЛР6\Lab6\Server\src\main\java" />
       <recent name="C:\ЛабораторныеРаботы\2сем\Программирование\ЛР6\Lab6\src\main\java\service" />
-      <recent name="C:\ЛабораторныеРаботы\2сем\Программирование\ЛР6\Lab6\src\main\java\commands" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\ЛабораторныеРаботы\2сем\Программирование\ЛР6\Lab6\Client\files" />
@@ -78,7 +77,13 @@
       <recent name="service" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerMain">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn compile" />
+      <command value="mvn package" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.ClientMain1">
     <configuration name="ClientMain1" type="Application" factoryName="Application">
       <envs>
         <env name="NAME_FILE" value="Client/files/file" />
@@ -106,11 +111,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Client.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Client_jar/Client.jar" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Server.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Server_jar/Server.jar" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.ClientMain1" />
       <item itemvalue="Application.ClientMain2" />
       <item itemvalue="Application.ServerMain" />
+      <item itemvalue="JAR Application.Client.jar" />
+      <item itemvalue="JAR Application.Server.jar" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JAR Application.Client.jar" />
+        <item itemvalue="JAR Application.Server.jar" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

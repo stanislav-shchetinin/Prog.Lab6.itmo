@@ -1,2 +1,4 @@
 id,name,x,y,creationDate,enginePower,capacity,distanceTravelled,type
+bc95761b-4bc8-4002-892c-c1cfc2c6f869,1,"2.0","-12231.0",2023-05-23T23:01:36.769515900+03:00[Europe/Volgograd],"1.0",1,"1.0",CAR
+eeddb551-1278-4dc3-925e-9de7972da2de,1,"12.0","-123231.0",2023-05-23T22:59:24.231153500+03:00[Europe/Volgograd],"1.0",1,"1.0",CAR
 742e7b7f-c56a-4aed-9f77-a86167f01532,eke,"-12.0","-23333.0",2023-04-30T23:25:42.924215200+03:00[Europe/Volgograd],"1.0",111111111111111111,"2.31323232",BOAT

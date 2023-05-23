@@ -136,6 +136,7 @@ public class ExecuteScript implements Command, OneArgument {
         } catch (FileNotFoundException e) {
             log.warning("Файл не найден");
         }
+
         return list;
     }
 
