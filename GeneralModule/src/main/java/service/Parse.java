@@ -91,25 +91,5 @@ public class Parse {
         }
         return ans;
     }
-    /**
-     * Метод, в котором в зависимости от класса предлагается формат ввода данных
-     * */
-    public static String formatInput(Class clazz){
-        if (clazz.getSimpleName().equals("Coordinates")){
-            return "(Пример: \"12.32 -800.004\") ";
-        } else if (clazz.getSimpleName().equals("Double") ||
-                clazz.getSimpleName().equals("double") ||
-                clazz.getSimpleName().equals("Float") ||
-                clazz.getSimpleName().equals("float")){
-            return "(Пример: \"12.32\") ";
-        } else if (clazz.getSimpleName().equals("Long")){
-            return "(Пример: \"12\") ";
-        } else if (clazz.getSimpleName().equals("VehicleType")){
-            return "(Соответствие чисел типу: CAR=1; PLANE=2; SUBMARINE=3; BOAT=4; BICYCLE=5) ";
-        } else {
-            return "";
-        }
-    }
-
 
 }
