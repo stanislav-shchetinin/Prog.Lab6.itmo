@@ -11,47 +11,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="165be659-3698-469e-afce-de9a86e190bd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/GeneralModule_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GeneralModule/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GeneralModule/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/commands/ExecuteScript.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/commands/Help.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/base/Coordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/base/Vehicle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/base/VehicleType.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/base/VehicleType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/AddElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/AddElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/AddIfMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/AddIfMax.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/AddIfMin.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/AddIfMin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/Clear.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/Clear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/CountByCapacity.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/CountByCapacity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/ExecuteScript.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/ExecuteScript.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/Exit.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/Exit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/Help.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/Help.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/Info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/PrintAscending.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/PrintAscending.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/PrintUniqueEnginePower.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/PrintUniqueEnginePower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/RemoveById.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/RemoveById.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/RemoveFirst.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/RemoveFirst.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/Save.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/Save.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/Show.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/Show.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/commands/UpdateId.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/UpdateId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/exceptions/ReadTypeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/exceptions/ReadTypeException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/exceptions/ReadValueException.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/exceptions/ReadValueException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/CollectionClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/service/CollectionClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/FileRead.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/service/FileRead.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/InitGlobalCollections.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/service/InitGlobalCollections.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/NoInputTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/service/NoInputTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/service/Pair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/Parse.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/service/Parse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/Validate.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/service/Validate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/service/command/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/command/ElementArgument.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/service/command/ElementArgument.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/command/NoArgument.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/service/command/NoArgument.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/command/OneArgument.java" beforeDir="false" afterPath="$PROJECT_DIR$/GeneralModule/src/main/java/service/command/OneArgument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/client/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/client/Interaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/console/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/console/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/service/Validate.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/service/Validate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/ExecuteScript.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/Help.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/commands/Help.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GeneralModule/src/main/java/commands/Save.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/commands/Save.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GeneralModule/src/main/java/service/FileRead.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GeneralModule/src/main/java/service/InitGlobalCollections.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GeneralModule/src/main/java/service/Validate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/files/file" beforeDir="false" afterPath="$PROJECT_DIR$/Server/files/file" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

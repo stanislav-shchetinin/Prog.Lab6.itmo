@@ -9,6 +9,7 @@ import service.command.NoArgument;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
 /**
  * Класс команды вывода всех команд с описанием: help<p>
  * Реализует класс Command, чтобы можно было вызывать выполнение команды<p>
@@ -44,6 +45,7 @@ public class Help implements Command, NoArgument {
             log.warning(e.getMessage());
         }
     }
-    @Override
+
     public void setCollection(CollectionClass collectionClass) {}
+
 }

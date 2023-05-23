@@ -1,7 +1,6 @@
 package client;
 
 import commands.ExecuteScript;
-
 import commands.Exit;
 import exceptions.ReadValueException;
 import lombok.SneakyThrows;
@@ -10,7 +9,6 @@ import service.command.Command;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
