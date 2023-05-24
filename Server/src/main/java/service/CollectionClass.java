@@ -6,6 +6,9 @@ import lombok.extern.java.Log;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
+
 /**
  * Менеджер по работе с коллекцией<p>
  * Аннотация @Log создает поле логгера
@@ -63,43 +66,38 @@ public class CollectionClass{
     }
     public void printAscending(ObjectOutputStream out){
         try {
-            PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
-            while (!collectionCopy.isEmpty()){
-                out.writeObject(collectionCopy.poll().toString());
-            }
+            String answer = collection
+                    .stream()
+                    .toList()
+                    .toString();
+            out.writeObject(answer.substring(1, answer.length() - 1));
             out.flush();
-        } catch (IOException e) {
+        } catch (IOException e){
             log.warning(e.getMessage());
         }
+
 
     }
     public void printUniqueEnginePower(ObjectOutputStream out){
         try {
-            PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
-            HashSet hashSet = new HashSet<Double>();
-            while (!collectionCopy.isEmpty()){
-                hashSet.add(collectionCopy.poll().getEnginePower());
-            }
-            out.writeObject(hashSet.toString());
+            out.writeObject(collection
+                    .stream()
+                    .map(Vehicle::getEnginePower)
+                    .distinct().toList()
+                    .toString());
             out.flush();
-        } catch (IOException e) {
+        } catch (IOException e){
             log.warning(e.getMessage());
         }
     }
     public void removeById (UUID id){
-        PriorityQueue<Vehicle> collectionNew = new PriorityQueue<>();
-        while (!collection.isEmpty()){
-            Vehicle vehicle = (Vehicle) collection.poll();
-            if (!vehicle.getId().equals(id)){
-                collectionNew.add(vehicle);
-            }
-        }
         uuidHashSet.remove(id);
-        this.collection = new PriorityQueue<>(collectionNew);
+        collection = collection.stream().filter(x -> !x.getId().equals(id))
+                .collect(Collectors.toCollection(PriorityQueue::new));
     }
 
     public void countByCapacity(Long capacity, ObjectOutputStream out){
-        try {
+        /*try {
             Integer count = 0;
             PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
             while (!collectionCopy.isEmpty()){
@@ -111,7 +109,22 @@ public class CollectionClass{
             out.flush();
         } catch (IOException e) {
             log.warning(e.getMessage());
+        }*/
+        try {
+            Long dist = collection
+                    .stream()
+                    .map(Vehicle::getCapacity)
+                    .distinct()
+                    .count();
+
+            out.writeObject(
+                    dist.toString()
+            );
+            out.flush();
+        } catch (IOException e){
+            log.warning(e.getMessage());
         }
+
 
     }
 

@@ -65,13 +65,18 @@ public class CollectionClass{
         uuidHashSet.remove(id);
     }
     public void printAscending(ObjectOutputStream out){
-        try {
+        /*try {
             PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
             while (!collectionCopy.isEmpty()){
                 out.writeObject(collectionCopy.poll().toString());
             }
             out.flush();
         } catch (IOException e) {
+            log.warning(e.getMessage());
+        }*/
+        try {
+            out.writeObject(collection.stream().toList().toString());
+        } catch (IOException e){
             log.warning(e.getMessage());
         }
 
