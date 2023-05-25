@@ -97,24 +97,10 @@ public class CollectionClass{
     }
 
     public void countByCapacity(Long capacity, ObjectOutputStream out){
-        /*try {
-            Integer count = 0;
-            PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
-            while (!collectionCopy.isEmpty()){
-                if (collectionCopy.poll().getCapacity().equals(capacity)){
-                    count += 1;
-                }
-            }
-            out.writeObject(count.toString());
-            out.flush();
-        } catch (IOException e) {
-            log.warning(e.getMessage());
-        }*/
         try {
             Long dist = collection
                     .stream()
-                    .map(Vehicle::getCapacity)
-                    .distinct()
+                    .filter(x -> x.getCapacity().equals(capacity))
                     .count();
 
             out.writeObject(
@@ -136,21 +122,10 @@ public class CollectionClass{
     public void updateById(Pair<Vehicle, UUID> pair){
         Vehicle vehicleNew = pair.getL();
         UUID id = pair.getR();
+        removeById(id);
+        add(vehicleNew);
         vehicleNew.setId(id);
-
-        PriorityQueue<Vehicle> collectionNew = new PriorityQueue<>();
-        while (!collection.isEmpty()){
-            Vehicle vehicleOld = collection.poll();
-            if (vehicleOld.getId().equals(id)){
-                uuidHashSet.remove(vehicleOld.getId());
-                uuidHashSet.add(vehicleNew.getId());
-                collectionNew.add(vehicleNew);
-            } else {
-                collectionNew.add(vehicleOld);
-            }
-        }
-
-        collection = collectionNew;
+        uuidHashSet.add(id);
 
     }
 

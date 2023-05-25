@@ -5,10 +5,10 @@ import lombok.extern.java.Log;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.PriorityQueue;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
+
 /**
  * Менеджер по работе с коллекцией<p>
  * Аннотация @Log создает поле логгера
@@ -65,61 +65,52 @@ public class CollectionClass{
         uuidHashSet.remove(id);
     }
     public void printAscending(ObjectOutputStream out){
-        /*try {
-            PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
-            while (!collectionCopy.isEmpty()){
-                out.writeObject(collectionCopy.poll().toString());
-            }
-            out.flush();
-        } catch (IOException e) {
-            log.warning(e.getMessage());
-        }*/
         try {
-            out.writeObject(collection.stream().toList().toString());
+            String answer = collection
+                    .stream()
+                    .toList()
+                    .toString();
+            out.writeObject(answer.substring(1, answer.length() - 1));
+            out.flush();
         } catch (IOException e){
             log.warning(e.getMessage());
         }
 
+
     }
     public void printUniqueEnginePower(ObjectOutputStream out){
         try {
-            PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
-            HashSet hashSet = new HashSet<Double>();
-            while (!collectionCopy.isEmpty()){
-                hashSet.add(collectionCopy.poll().getEnginePower());
-            }
-            out.writeObject(hashSet.toString());
+            out.writeObject(collection
+                    .stream()
+                    .map(Vehicle::getEnginePower)
+                    .distinct().toList()
+                    .toString());
             out.flush();
-        } catch (IOException e) {
+        } catch (IOException e){
             log.warning(e.getMessage());
         }
     }
     public void removeById (UUID id){
-        PriorityQueue<Vehicle> collectionNew = new PriorityQueue<>();
-        while (!collection.isEmpty()){
-            Vehicle vehicle = (Vehicle) collection.poll();
-            if (!vehicle.getId().equals(id)){
-                collectionNew.add(vehicle);
-            }
-        }
         uuidHashSet.remove(id);
-        this.collection = new PriorityQueue<>(collectionNew);
+        collection = collection.stream().filter(x -> !x.getId().equals(id))
+                .collect(Collectors.toCollection(PriorityQueue::new));
     }
 
     public void countByCapacity(Long capacity, ObjectOutputStream out){
         try {
-            Integer count = 0;
-            PriorityQueue<Vehicle> collectionCopy = new PriorityQueue<>(collection);
-            while (!collectionCopy.isEmpty()){
-                if (collectionCopy.poll().getCapacity().equals(capacity)){
-                    count += 1;
-                }
-            }
-            out.writeObject(count.toString());
+            Long dist = collection
+                    .stream()
+                    .filter(x -> x.getCapacity().equals(capacity))
+                    .count();
+
+            out.writeObject(
+                    dist.toString()
+            );
             out.flush();
-        } catch (IOException e) {
+        } catch (IOException e){
             log.warning(e.getMessage());
         }
+
 
     }
 
@@ -131,20 +122,10 @@ public class CollectionClass{
     public void updateById(Pair<Vehicle, UUID> pair){
         Vehicle vehicleNew = pair.getL();
         UUID id = pair.getR();
-
-        PriorityQueue<Vehicle> collectionNew = new PriorityQueue<>();
-        while (!collection.isEmpty()){
-            Vehicle vehicleOld = collection.poll();
-            if (vehicleOld.getId().equals(id)){
-                uuidHashSet.remove(vehicleOld.getId());
-                uuidHashSet.add(vehicleNew.getId());
-                collectionNew.add(vehicleNew);
-            } else {
-                collectionNew.add(vehicleOld);
-            }
-        }
-
-        collection = collectionNew;
+        removeById(id);
+        add(vehicleNew);
+        vehicleNew.setId(id);
+        uuidHashSet.add(id);
 
     }
 
